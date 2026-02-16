@@ -10,7 +10,7 @@ const events = [
         date: "Every Friday",
         time: "8:00 PM - 1:00 AM",
         description: "Live acoustic music and special late-night menu.",
-        image: "https://images.unsplash.com/photo-1514525253440-b393452e8d26?q=80&w=1974&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=2070&auto=format&fit=crop",
     },
     {
         id: 2,
@@ -24,16 +24,16 @@ const events = [
 
 export default function Events() {
     return (
-        <section className="py-20 bg-neutral-900 text-white relative overflow-hidden">
+        <section className="py-20 bg-background text-foreground relative overflow-hidden transition-colors duration-300">
             {/* Neon Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary/5 blur-3xl pointer-events-none" />
 
             <div className="container mx-auto px-6 relative z-10">
                 <div className="mb-16 text-center">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                    <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
                         Upcoming <span className="text-primary drop-shadow-[0_0_10px_rgba(250,204,21,0.5)]">Events</span>
                     </h2>
-                    <p className="text-gray-400 max-w-2xl mx-auto">
+                    <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                         Join us for exclusive dining experiences and live entertainment.
                     </p>
                 </div>
@@ -46,7 +46,7 @@ export default function Events() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.2 }}
-                            className="flex flex-col md:flex-row bg-card border border-white/10 rounded-3xl overflow-hidden hover:border-primary/50 transition-colors group"
+                            className="flex flex-col md:flex-row bg-card border border-gray-200 dark:border-white/10 rounded-3xl overflow-hidden hover:border-primary/50 transition-all group shadow-lg dark:shadow-none"
                         >
                             <div className="relative h-64 md:h-auto md:w-1/2 overflow-hidden">
                                 <img
@@ -57,8 +57,8 @@ export default function Events() {
                                 <div className="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-colors" />
                             </div>
                             <div className="p-8 md:w-1/2 flex flex-col justify-center">
-                                <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">{event.title}</h3>
-                                <div className="space-y-3 mb-6 text-gray-300 text-sm">
+                                <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white group-hover:text-primary transition-colors">{event.title}</h3>
+                                <div className="space-y-3 mb-6 text-gray-600 dark:text-gray-300 text-sm">
                                     <div className="flex items-center gap-2">
                                         <Calendar size={16} className="text-primary" />
                                         {event.date}
@@ -72,7 +72,7 @@ export default function Events() {
                                         Main Lounge
                                     </div>
                                 </div>
-                                <p className="text-gray-400 text-sm mb-6">{event.description}</p>
+                                <p className="text-gray-500 dark:text-gray-400 text-sm mb-6">{event.description}</p>
                                 <button className="text-primary font-bold uppercase tracking-widest text-sm hover:underline text-left">
                                     Reserve a Table
                                 </button>

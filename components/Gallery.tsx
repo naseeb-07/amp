@@ -5,21 +5,24 @@ import { Instagram } from "lucide-react";
 import Image from "next/image";
 
 const images = [
-    { src: "https://images.unsplash.com/photo-1512485800893-cad379850846?q=80&w=2070&auto=format&fit=crop", span: "col-span-1 row-span-1" },
-    { src: "https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?q=80&w=2070&auto=format&fit=crop", span: "col-span-1 row-span-2" },
-    { src: "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=2020&auto=format&fit=crop", span: "col-span-1 row-span-1" },
-    { src: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1974&auto=format&fit=crop", span: "col-span-2 row-span-1" },
-    { src: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?q=80&w=1980&auto=format&fit=crop", span: "col-span-1 row-span-1" },
+    { src: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&q=80&w=2070", span: "col-span-1 row-span-1" }, // New reliable steak image
+    { src: "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=1974", span: "col-span-1 row-span-2" },
+    { src: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&q=80&w=1974", span: "col-span-1 row-span-1" },
+    { src: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=2070", span: "col-span-1 row-span-1" },
+    { src: "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&q=80&w=2070", span: "col-span-2 row-span-1" }, // New reliable interior
+    { src: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&q=80&w=2070", span: "col-span-1 row-span-1" }, // New reliable steak image
+    { src: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=2070", span: "col-span-1 row-span-1" },
+    { src: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=2070", span: "col-span-2 row-span-1" },
 ];
 
 export default function Gallery() {
     return (
-        <section className="py-20 bg-black text-white">
+        <section className="py-20 bg-background text-foreground transition-colors duration-300">
             <div className="container mx-auto px-6">
                 <div className="flex justify-between items-end mb-12">
                     <div>
-                        <h2 className="text-4xl md:text-5xl font-bold mb-2">Follow the <span className="text-primary">Vibe</span></h2>
-                        <p className="text-gray-400">@HalalBowlHouse</p>
+                        <h2 className="text-4xl md:text-5xl font-bold mb-2 text-gray-900 dark:text-white">Follow the <span className="text-primary">Vibe</span></h2>
+                        <p className="text-gray-600 dark:text-gray-400">@AsifsMeltingPoint</p>
                     </div>
 
                     <a

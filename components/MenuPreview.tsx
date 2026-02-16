@@ -37,20 +37,20 @@ const categories = [
 
 export default function MenuPreview() {
     return (
-        <section className="py-20 bg-black relative">
+        <section className="py-20 bg-background relative transition-colors duration-300">
             <div className="container mx-auto px-6">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                     <div>
                         <h3 className="text-primary font-medium tracking-widest uppercase mb-3">
                             Discover Our Menu
                         </h3>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white">
+                        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
                             Curated <span className="text-gray-500">Collections</span>
                         </h2>
                     </div>
                     <Link
                         href="/menu"
-                        className="flex items-center gap-2 text-white hover:text-primary transition-colors group"
+                        className="flex items-center gap-2 text-gray-900 dark:text-white hover:text-primary transition-colors group"
                     >
                         View Full Menu
                         <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
@@ -66,20 +66,20 @@ export default function MenuPreview() {
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
                             whileHover={{ y: -10 }}
-                            className="bg-card border border-white/5 rounded-3xl p-8 hover:border-primary/30 transition-all duration-300 group cursor-pointer"
+                            className="bg-card border border-gray-200 dark:border-white/5 rounded-3xl p-8 hover:border-primary/30 transition-all duration-300 group cursor-pointer shadow-md dark:shadow-none"
                         >
                             <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${category.color} flex items-center justify-center mb-6 shadow-lg`}>
                                 <category.icon size={28} className="text-white" />
                             </div>
 
-                            <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-primary transition-colors">
+                            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-primary transition-colors">
                                 {category.name}
                             </h3>
 
                             <ul className="space-y-3 mb-8">
                                 {category.items.map((item) => (
-                                    <li key={item} className="text-gray-400 text-sm flex items-center gap-2">
-                                        <span className="w-1.5 h-1.5 rounded-full bg-white/20" />
+                                    <li key={item} className="text-gray-600 dark:text-gray-400 text-sm flex items-center gap-2">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-gray-400 dark:bg-white/20" />
                                         {item}
                                     </li>
                                 ))}

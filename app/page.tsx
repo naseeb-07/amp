@@ -12,17 +12,27 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black text-white overflow-x-hidden">
+    <main className="min-h-screen overflow-x-hidden">
       <Navbar />
       <Hero />
       <SignatureDishes />
-      <ChefsCollection />
+      <div id="story">
+        <ChefsCollection />
+      </div>
       <MenuPreview />
-      <Events />
+      <div id="catering">
+        <Events />
+      </div>
       <Testimonials />
-      <Gallery />
-      <BlogPreview />
-      <CTA />
+      <div id="gallery">
+        <Gallery />
+      </div>
+      <div id="blog">
+        <BlogPreview />
+      </div>
+      <div id="contact">
+        <CTA />
+      </div>
       <Footer />
     </main>
   );

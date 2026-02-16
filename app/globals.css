@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-poppins: var(--font-poppins);
   --font-inter: var(--font-inter);
@@ -7,22 +9,41 @@
   --color-primary: #FACC15;
   --color-secondary: #F59E0B;
   --color-dark: #0B0B0B;
-  --color-card: #111827;
-  --color-text-primary: #FFFFFF;
-  --color-text-secondary: #9CA3AF;
-  
+  --color-card: var(--card);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+
   --animate-float: float 3s ease-in-out infinite;
 }
 
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 :root {
+  --background: #FFFFFF;
+  --foreground: #0B0B0B;
+  --card: #F3F4F6;
+  --text-primary: #111827;
+  --text-secondary: #4B5563;
+}
+
+.dark {
   --background: #0B0B0B;
   --foreground: #FFFFFF;
+  --card: #111827;
+  --text-primary: #FFFFFF;
+  --text-secondary: #9CA3AF;
 }
 
 body {
@@ -35,15 +56,18 @@ body {
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
-  background: #111827; 
+  background: #111827;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #374151; 
+  background: #374151;
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #FACC15; 
+  background: #FACC15;
 }
 
 /* Glassmorphism Utility */

@@ -14,8 +14,12 @@ const inter = Inter({
   weight: ["300", "400", "500", "600"],
 });
 
+import { ThemeProvider } from "@/components/theme-provider";
+
+// ... existing imports
+
 export const metadata: Metadata = {
-  title: "Halal Bowl House | Premium Dark Edition",
+  title: "Asif's Melting Pot | Premium Dark Edition",
   description: "Experience premium Halal comfort food with a luxurious dining feel.",
 };
 
@@ -25,11 +29,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark scroll-smooth">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${poppins.variable} ${inter.variable} antialiased bg-black text-white selection:bg-yellow-400 selection:text-black`}
+        className={`${poppins.variable} ${inter.variable} antialiased selection:bg-yellow-400 selection:text-black`}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

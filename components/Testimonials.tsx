@@ -32,7 +32,7 @@ const testimonials = [
 
 export default function Testimonials() {
     return (
-        <section className="py-20 bg-neutral-900 overflow-hidden relative">
+        <section className="py-20 bg-background overflow-hidden relative transition-colors duration-300">
             <div className="container mx-auto px-6">
                 <div className="text-center mb-16">
                     <div className="flex items-center justify-center gap-2 mb-4">
@@ -41,9 +41,9 @@ export default function Testimonials() {
                         <Star className="text-yellow-400 fill-yellow-400" size={24} />
                         <Star className="text-yellow-400 fill-yellow-400" size={24} />
                         <Star className="text-yellow-400 fill-yellow-400" size={24} />
-                        <span className="text-white font-bold text-lg ml-2">4.9/5 Google Reviews</span>
+                        <span className="text-gray-900 dark:text-white font-bold text-lg ml-2">4.9/5 Google Reviews</span>
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                    <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
                         Loved by <span className="text-primary">Thousands</span>
                     </h2>
                 </div>
@@ -56,7 +56,7 @@ export default function Testimonials() {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: i * 0.2 }}
                             viewport={{ once: true }}
-                            className="bg-card border border-white/5 p-8 rounded-3xl relative"
+                            className="bg-card border border-gray-200 dark:border-white/5 p-8 rounded-3xl relative shadow-lg dark:shadow-none"
                         >
                             <Quote className="absolute top-8 right-8 text-primary/20" size={48} />
                             <div className="flex gap-1 mb-6">
@@ -64,18 +64,18 @@ export default function Testimonials() {
                                     <Star
                                         key={i}
                                         size={16}
-                                        className={`${i < Math.floor(t.rating) ? "text-yellow-400 fill-yellow-400" : "text-gray-600"}`}
+                                        className={`${i < Math.floor(t.rating) ? "text-yellow-400 fill-yellow-400" : "text-gray-400 dark:text-gray-600"}`}
                                     />
                                 ))}
                             </div>
-                            <p className="text-gray-300 italic mb-8 relative z-10 leading-relaxed">"{t.quote}"</p>
+                            <p className="text-gray-600 dark:text-gray-300 italic mb-8 relative z-10 leading-relaxed">"{t.quote}"</p>
 
                             <div className="flex items-center gap-4">
                                 <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-primary/50">
                                     <img src={t.image} alt={t.name} className="w-full h-full object-cover" />
                                 </div>
                                 <div>
-                                    <h4 className="text-white font-bold">{t.name}</h4>
+                                    <h4 className="text-gray-900 dark:text-white font-bold">{t.name}</h4>
                                     <p className="text-primary text-xs uppercase tracking-wider">{t.role}</p>
                                 </div>
                             </div>

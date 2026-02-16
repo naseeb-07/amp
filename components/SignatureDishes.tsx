@@ -10,7 +10,7 @@ const dishes = [
         name: "Truffle Wagyu Bowl",
         price: "$24.99",
         rating: 4.8,
-        image: "https://images.unsplash.com/photo-1559058789-672da06263d8?q=80&w=2067&auto=format&fit=crop",
+        image: "/steak.jpg",
         isBestSeller: true,
     },
     {
@@ -18,7 +18,7 @@ const dishes = [
         name: "Spicy Lamb Gyro",
         price: "$18.50",
         rating: 4.7,
-        image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?q=80&w=2070&auto=format&fit=crop",
+        image: "/lamb-shank.jpg",
         isBestSeller: true,
     },
     {
@@ -26,7 +26,7 @@ const dishes = [
         name: "Mediterranean Platter",
         price: "$22.00",
         rating: 4.9,
-        image: "https://images.unsplash.com/photo-1563245372-f21727e5a3ea?q=80&w=2070&auto=format&fit=crop",
+        image: "/grilled-salmon.jpg",
         isBestSeller: false,
     },
     {
@@ -34,14 +34,14 @@ const dishes = [
         name: "Chicken Over Rice",
         price: "$16.99",
         rating: 4.6,
-        image: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?q=80&w=1971&auto=format&fit=crop",
+        image: "/chicken-over-rice.jpg",
         isBestSeller: true,
     },
 ];
 
 export default function SignatureDishes() {
     return (
-        <section className="py-20 bg-neutral-900 relative overflow-hidden">
+        <section className="py-20 bg-gray-50 dark:bg-neutral-900 relative overflow-hidden transition-colors duration-300">
             {/* Background decoration */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
 
@@ -60,7 +60,7 @@ export default function SignatureDishes() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-4xl md:text-5xl font-bold text-white"
+                        className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white"
                     >
                         Signature <span className="text-primary">Dishes</span>
                     </motion.h2>
@@ -74,7 +74,7 @@ export default function SignatureDishes() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="group relative bg-card border border-white/5 rounded-3xl overflow-hidden hover:border-primary/50 transition-colors duration-300"
+                            className="group relative bg-card border border-gray-200 dark:border-white/5 rounded-3xl overflow-hidden hover:border-primary/50 transition-colors duration-300 shadow-lg dark:shadow-none"
                         >
                             <div className="relative h-64 overflow-hidden">
                                 <Image
@@ -98,14 +98,14 @@ export default function SignatureDishes() {
                                 <div className="flex justify-between items-center mb-2">
                                     <div className="flex items-center gap-1 text-primary">
                                         <Star size={16} fill="currentColor" />
-                                        <span className="text-white font-bold text-sm">{dish.rating}</span>
+                                        <span className="text-gray-900 dark:text-white font-bold text-sm">{dish.rating}</span>
                                     </div>
                                     <span className="text-primary font-bold text-xl">{dish.price}</span>
                                 </div>
-                                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
+                                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary transition-colors">
                                     {dish.name}
                                 </h3>
-                                <p className="text-gray-400 text-sm line-clamp-2">
+                                <p className="text-gray-600 dark:text-gray-400 text-sm line-clamp-2">
                                     Premium ingredients tailored for the perfect bowl.
                                 </p>
                             </div>

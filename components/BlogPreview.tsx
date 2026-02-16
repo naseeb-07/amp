@@ -28,17 +28,17 @@ const posts = [
         snippet: "A deep dive into our rigorous standards and sourcing partners.",
         date: "Sep 25, 2023",
         readTime: "7 min read",
-        image: "https://images.unsplash.com/photo-1626804475297-411db743828c?q=80&w=2070&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1432139555190-58524dae6a55?q=80&w=2070&auto=format&fit=crop",
     },
 ];
 
 export default function BlogPreview() {
     return (
-        <section className="py-20 bg-neutral-900 text-white">
+        <section className="py-20 bg-background text-foreground transition-colors duration-300">
             <div className="container mx-auto px-6">
                 <div className="flex justify-between items-end mb-12">
-                    <h2 className="text-4xl md:text-5xl font-bold">Latest <span className="text-gray-500">Stories</span></h2>
-                    <Link href="/blog" className="flex items-center gap-2 hover:text-primary transition-colors">
+                    <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">Latest <span className="text-gray-500">Stories</span></h2>
+                    <Link href="/blog" className="flex items-center gap-2 text-gray-900 dark:text-white hover:text-primary transition-colors">
                         Read All <ArrowRight size={20} />
                     </Link>
                 </div>
@@ -51,7 +51,7 @@ export default function BlogPreview() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="group bg-card border border-white/5 rounded-3xl overflow-hidden hover:border-primary/30 transition-all duration-300 h-full flex flex-col"
+                            className="group bg-card border border-gray-200 dark:border-white/5 rounded-3xl overflow-hidden hover:border-primary/30 transition-all duration-300 h-full flex flex-col shadow-lg dark:shadow-none"
                         >
                             <div className="relative h-48 overflow-hidden">
                                 <Image
@@ -62,12 +62,12 @@ export default function BlogPreview() {
                                 />
                             </div>
                             <div className="p-6 flex flex-col flex-grow">
-                                <div className="flex items-center gap-4 text-xs text-gray-500 mb-4 uppercase tracking-wider">
+                                <div className="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400 mb-4 uppercase tracking-wider">
                                     <span>{post.date}</span>
                                     <span className="flex items-center gap-1"><Clock size={12} /> {post.readTime}</span>
                                 </div>
-                                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">{post.title}</h3>
-                                <p className="text-gray-400 text-sm mb-6 flex-grow">{post.snippet}</p>
+                                <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-primary transition-colors">{post.title}</h3>
+                                <p className="text-gray-600 dark:text-gray-400 text-sm mb-6 flex-grow">{post.snippet}</p>
                                 <Link href="#" className="flex items-center gap-2 text-primary text-sm font-bold uppercase tracking-widest hover:underline">
                                     Read More <ArrowRight size={16} />
                                 </Link>
