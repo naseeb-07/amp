@@ -2,15 +2,15 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, ShoppingBag } from "lucide-react";
-import Image from "next/image";
+import Link from "next/link";
 
 export default function Hero() {
     return (
-        <section className="relative h-screen w-full overflow-hidden flex items-center justify-center">
+        <section id="home" className="relative h-screen w-full overflow-hidden flex items-center justify-center">
             {/* Background with Overlay */}
             <div className="absolute inset-0 z-0">
                 {/* Minimal bottom fade for readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent z-10" />
                 <div className="absolute inset-0 bg-neutral-900 flex items-center justify-center text-neutral-700 overflow-hidden">
                     <iframe
                         className="absolute top-1/2 left-1/2 w-[120vw] h-[120vh] min-w-[120vw] min-h-[120vh] -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity=10  object-cover scale-110"
@@ -36,7 +36,7 @@ export default function Hero() {
                         </h2>
                     </div>
                     <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
-                        Savor the <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">Golden</span> Taste
+                        Savor the <span className="text-transparent bg-clip-text bg-linear-to-r from-yellow-400 to-yellow-600">Golden</span> Taste
                     </h1>
                     <p className="text-white text-lg md:text-xl mb-10 max-w-2xl mx-auto font-medium drop-shadow-lg">
                         Experince the finest Indo-Med cuisine crafted with passion.
@@ -48,10 +48,10 @@ export default function Hero() {
                             <ShoppingBag size={20} />
                             Order Online
                         </button>
-                        <button className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-full font-bold text-lg transition-all hover:scale-105 flex items-center gap-2 w-full md:w-auto justify-center">
+                        <Link href="/menu" className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-full font-bold text-lg transition-all hover:scale-105 flex items-center gap-2 w-full md:w-auto justify-center">
                             View Menu
                             <ArrowRight size={20} />
-                        </button>
+                        </Link>
                     </div>
                 </motion.div>
             </div>

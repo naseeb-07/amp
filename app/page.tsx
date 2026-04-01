@@ -9,6 +9,7 @@ import Gallery from "@/components/Gallery";
 import BlogPreview from "@/components/BlogPreview";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
+import FeedbackForm from "@/components/FeedbackForm";
 
 export default function Home() {
   return (
@@ -24,15 +25,10 @@ export default function Home() {
         <Events />
       </div>
       <Testimonials />
-      <div id="gallery">
-        <Gallery />
-      </div>
-      <div id="blog">
-        <BlogPreview />
-      </div>
-      <div id="contact">
-        <CTA />
-      </div>
+      <FeedbackForm />
+      <Gallery />
+      <BlogPreview />
+      <CTA />
       <Footer />
     </main>
   );

@@ -1,45 +1,34 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Star, Plus } from "lucide-react";
+import React from "react";
+import { Star, Plus, ArrowRight } from "lucide-react";
 import Image from "next/image";
-
-const dishes = [
-    {
-        id: 1,
-        name: "Truffle Wagyu Bowl",
-        price: "$24.99",
-        rating: 4.8,
-        image: "/steak.jpg",
-        isBestSeller: true,
-    },
-    {
-        id: 2,
-        name: "Spicy Lamb Gyro",
-        price: "$18.50",
-        rating: 4.7,
-        image: "/lamb-shank.jpg",
-        isBestSeller: true,
-    },
-    {
-        id: 3,
-        name: "Mediterranean Platter",
-        price: "$22.00",
-        rating: 4.9,
-        image: "/grilled-salmon.jpg",
-        isBestSeller: false,
-    },
-    {
-        id: 4,
-        name: "Chicken Over Rice",
-        price: "$16.99",
-        rating: 4.6,
-        image: "/chicken-over-rice.jpg",
-        isBestSeller: true,
-    },
-];
+import Link from "next/link";
+import { getCurrencySymbol } from "@/lib/currency";
 
 export default function SignatureDishes() {
+    const [dishes, setDishes] = React.useState<any[]>([]);
+    const [isLoading, setIsLoading] = React.useState(true);
+
+    React.useEffect(() => {
+        const fetchDishes = async () => {
+            try {
+                const res = await fetch("/api/signature-dishes");
+                const data = await res.json();
+                setDishes(Array.isArray(data) ? data : []);
+            } catch (error) {
+                console.error("Error fetching dishes:", error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchDishes();
+    }, []);
+
+    if (isLoading) return <div className="py-20 text-center">Loading Our Best...</div>;
+    if (dishes.length === 0) return null;
+
     return (
         <section className="py-20 bg-gray-50 dark:bg-neutral-900 relative overflow-hidden transition-colors duration-300">
             {/* Background decoration */}
@@ -66,8 +55,8 @@ export default function SignatureDishes() {
                     </motion.h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {dishes.map((dish, index) => (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                    {dishes.slice(0, 4).map((dish, index) => (
                         <motion.div
                             key={dish.id}
                             initial={{ opacity: 0, y: 30 }}
@@ -100,7 +89,7 @@ export default function SignatureDishes() {
                                         <Star size={16} fill="currentColor" />
                                         <span className="text-gray-900 dark:text-white font-bold text-sm">{dish.rating}</span>
                                     </div>
-                                    <span className="text-primary font-bold text-xl">{dish.price}</span>
+                                    <span className="text-primary font-bold text-xl">{getCurrencySymbol(dish.currency)} {dish.price}</span>
                                 </div>
                                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary transition-colors">
                                     {dish.name}
@@ -112,6 +101,18 @@ export default function SignatureDishes() {
                         </motion.div>
                     ))}
                 </div>
+
+                {dishes.length > 4 && (
+                    <div className="flex justify-center mt-12">
+                        <Link
+                            href="/menu"
+                            className="group flex items-center gap-3 bg-white dark:bg-neutral-800 border border-gray-200 dark:border-white/5 hover:border-primary/50 text-gray-900 dark:text-white px-8 py-4 rounded-full font-bold transition-all shadow-lg hover:shadow-primary/10"
+                        >
+                            View Full Menu
+                            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform text-primary" />
+                        </Link>
+                    </div>
+                )}
             </div>
         </section>
     );

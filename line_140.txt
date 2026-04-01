@@ -1,0 +1,1 @@
+﻿C:\Users\darul\OneDrive\Desktop\restaurant\naseeb\scripts\seed_menu.js:73:21 - 'i' is assigned a value but never used. (@typescript-eslint/no-unused-vars)

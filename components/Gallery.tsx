@@ -29,7 +29,7 @@ export default function Gallery() {
                         href="https://instagram.com"
                         target="_blank"
                         rel="noreferrer"
-                        className="flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-6 py-3 rounded-full font-bold transition-all hover:scale-105 shadow-lg"
+                        className="flex items-center gap-2 bg-linear-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-6 py-3 rounded-full font-bold transition-all hover:scale-105 shadow-lg"
                     >
                         <Instagram size={20} />
                         Follow Us

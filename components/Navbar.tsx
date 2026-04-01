@@ -7,6 +7,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useTheme } from "next-themes";
+import { usePathname } from "next/navigation";
+import { useCart } from "@/components/CartContext";
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +17,7 @@ export default function Navbar() {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        setMounted(true);
+        setTimeout(() => setMounted(true), 0);
         const handleScroll = () => {
             setScrolled(window.scrollY > 20);
         };
@@ -23,10 +25,27 @@ export default function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    const pathname = usePathname();
+    const { totalItems } = useCart();
+
+    const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        // If it's a hash link and we are currently on the homepage, scroll manually.
+        if (href.startsWith("/#") && pathname === "/") {
+            e.preventDefault();
+            const targetId = href.replace("/#", "");
+            const elem = document.getElementById(targetId);
+            if (elem) {
+                elem.scrollIntoView({ behavior: "smooth" });
+            }
+            setIsOpen(false);
+        }
+    };
+
     const navLinks = [
-        { name: "Home", href: "/" },
+        { name: "Home", href: "/#home" },
         { name: "Menu", href: "/menu" },
-        { name: "Catering", href: "/#catering" },
+        { name: "Events", href: "/events" },
+        { name: "Catering", href: "/contact" },
         { name: "Blog", href: "/#blog" },
     ];
 
@@ -39,9 +58,9 @@ export default function Navbar() {
         : "bg-transparent py-4"
         }`;
 
-    // Links should be black on light background, white on dark background
+    // Links should adapt when scrolled, but always be white when transparent at the top
     const textClasses = "text-gray-600 dark:text-gray-300 hover:text-primary transition-colors";
-    const activeTextClasses = "text-gray-900 dark:text-white transition-colors";
+    const activeTextClasses = "text-white hover:text-primary transition-colors";
 
     if (!mounted) return null;
 
@@ -64,6 +83,7 @@ export default function Navbar() {
                         <Link
                             key={link.name}
                             href={link.href}
+                            onClick={(e) => handleLinkClick(e, link.href)}
                             className={`text-sm font-medium uppercase tracking-widest ${scrolled ? textClasses : activeTextClasses
                                 }`}
                         >
@@ -72,10 +92,10 @@ export default function Navbar() {
                     ))}
                     <div className="flex items-center gap-4">
                         <ThemeToggle />
-                        <button className="bg-primary hover:bg-yellow-500 text-black px-6 py-2 rounded-full font-semibold transition-transform hover:scale-105 flex items-center gap-2">
+                        <Link href={totalItems > 0 ? "/cart" : "/menu"} className="bg-primary hover:bg-yellow-500 text-black px-6 py-2 rounded-full font-semibold transition-transform hover:scale-105 flex items-center gap-2">
                             <ShoppingBag size={18} />
-                            Order Now
-                        </button>
+                            {totalItems > 0 ? `View Cart (${totalItems})` : "Order Now"}
+                        </Link>
                     </div>
                 </nav>
 
@@ -83,7 +103,7 @@ export default function Navbar() {
                 <div className="flex items-center gap-4 md:hidden">
                     <ThemeToggle />
                     <button
-                        className="transition-colors text-gray-900 dark:text-white"
+                        className={`transition-colors ${scrolled ? "text-gray-900 dark:text-white" : "text-white"}`}
                         onClick={() => setIsOpen(!isOpen)}
                     >
                         {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -106,16 +126,26 @@ export default function Navbar() {
                                     key={link.name}
                                     href={link.href}
                                     className="text-xl font-medium text-foreground hover:text-primary"
-                                    onClick={() => setIsOpen(false)}
+                                    onClick={(e) => {
+                                        if (link.href.startsWith("/#") && pathname === "/") {
+                                            handleLinkClick(e, link.href);
+                                        } else {
+                                            setIsOpen(false);
+                                        }
+                                    }}
                                 >
                                     {link.name}
                                 </Link>
                             ))}
                             <hr className="border-border my-2" />
-                            <button className="w-full bg-primary text-black py-3 rounded-xl font-bold flex items-center justify-center gap-2">
+                            <Link
+                                href={totalItems > 0 ? "/cart" : "/menu"}
+                                onClick={() => setIsOpen(false)}
+                                className="w-full bg-primary text-black py-3 rounded-xl font-bold flex items-center justify-center gap-2"
+                            >
                                 <ShoppingBag size={20} />
-                                Order Online
-                            </button>
+                                {totalItems > 0 ? `View Cart (${totalItems})` : "Order Online"}
+                            </Link>
                         </nav>
                     </motion.div>
                 )}

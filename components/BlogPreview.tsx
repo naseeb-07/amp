@@ -1,50 +1,56 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Clock } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-const posts = [
-    {
-        id: 1,
-        title: "The Secret Behind Our Wagyu",
-        snippet: "Discover how we source the finest Halal Wagyu beef for our signature bowls.",
-        date: "Oct 12, 2023",
-        readTime: "5 min read",
-        image: "https://images.unsplash.com/photo-1546241072-48010ad2862c?q=80&w=1974&auto=format&fit=crop",
-    },
-    {
-        id: 2,
-        title: "Late Night Dining Etiquette",
-        snippet: "Why dark dining is the new trend sweeping through the food scene.",
-        date: "Oct 08, 2023",
-        readTime: "3 min read",
-        image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop",
-    },
-    {
-        id: 3,
-        title: "Understanding Halal Certification",
-        snippet: "A deep dive into our rigorous standards and sourcing partners.",
-        date: "Sep 25, 2023",
-        readTime: "7 min read",
-        image: "https://images.unsplash.com/photo-1432139555190-58524dae6a55?q=80&w=2070&auto=format&fit=crop",
-    },
-];
+interface BlogPost {
+    id: string;
+    title: string;
+    image: string;
+    date: string;
+    readTime: string;
+    snippet: string;
+}
 
 export default function BlogPreview() {
+    const [posts, setPosts] = React.useState<BlogPost[]>([]);
+    const [isLoading, setIsLoading] = React.useState(true);
+
+    React.useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const res = await fetch("/api/blog");
+                const data = await res.json();
+                setPosts(Array.isArray(data) ? data : []);
+            } catch (error) {
+                console.error("Error fetching blog posts:", error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchPosts();
+    }, []);
+
+    if (isLoading) return null;
+    if (posts.length === 0) return null;
+
+    const visiblePosts = posts.slice(0, 3);
+
     return (
-        <section className="py-20 bg-background text-foreground transition-colors duration-300">
+        <section id="blog" className="py-20 bg-background text-foreground transition-colors duration-300">
             <div className="container mx-auto px-6">
                 <div className="flex justify-between items-end mb-12">
-                    <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">Latest <span className="text-gray-500">Stories</span></h2>
-                    <Link href="/blog" className="flex items-center gap-2 text-gray-900 dark:text-white hover:text-primary transition-colors">
-                        Read All <ArrowRight size={20} />
-                    </Link>
+                    <div>
+                        <h3 className="text-primary font-medium tracking-widest uppercase mb-3">Our Stories</h3>
+                        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">Latest <span className="text-gray-500">Stories</span></h2>
+                    </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {posts.map((post, index) => (
+                    {visiblePosts.map((post, index) => (
                         <motion.article
                             key={post.id}
                             initial={{ opacity: 0, y: 30 }}
@@ -61,13 +67,13 @@ export default function BlogPreview() {
                                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                                 />
                             </div>
-                            <div className="p-6 flex flex-col flex-grow">
+                            <div className="p-6 flex flex-col grow">
                                 <div className="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400 mb-4 uppercase tracking-wider">
                                     <span>{post.date}</span>
                                     <span className="flex items-center gap-1"><Clock size={12} /> {post.readTime}</span>
                                 </div>
                                 <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-primary transition-colors">{post.title}</h3>
-                                <p className="text-gray-600 dark:text-gray-400 text-sm mb-6 flex-grow">{post.snippet}</p>
+                                <p className="text-gray-600 dark:text-gray-400 text-sm mb-6 grow">{post.snippet}</p>
                                 <Link href="#" className="flex items-center gap-2 text-primary text-sm font-bold uppercase tracking-widest hover:underline">
                                     Read More <ArrowRight size={16} />
                                 </Link>
@@ -75,6 +81,18 @@ export default function BlogPreview() {
                         </motion.article>
                     ))}
                 </div>
+
+                {posts.length > 3 && (
+                    <div className="mt-12 text-center">
+                        <Link
+                            href="/blog"
+                            className="inline-flex items-center gap-2 bg-primary text-black font-bold px-8 py-4 rounded-full hover:bg-yellow-500 transition-colors shadow-lg shadow-primary/20"
+                        >
+                            See More Stories
+                            <ArrowRight size={20} />
+                        </Link>
+                    </div>
+                )}
             </div>
         </section>
     );

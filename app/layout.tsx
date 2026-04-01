@@ -15,6 +15,8 @@ const inter = Inter({
 });
 
 import { ThemeProvider } from "@/components/theme-provider";
+import { ScrollToTop } from "@/components/ScrollToTop";
+import { CartProvider } from "@/components/CartContext";
 
 // ... existing imports
 
@@ -39,7 +41,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <CartProvider>
+            {children}
+            <ScrollToTop />
+          </CartProvider>
         </ThemeProvider>
       </body>
     </html>

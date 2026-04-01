@@ -1,41 +1,73 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, UtensilsCrossed, Coffee, Pizza, Soup } from "lucide-react";
+import { ArrowRight, UtensilsCrossed, Coffee, Pizza, Soup, Beef, Fish, Drumstick } from "lucide-react";
 import Link from "next/link";
 
-const categories = [
-    {
-        id: "bowls",
-        name: "Premium Bowls",
-        icon: Soup,
-        items: ["Truffle Wagyu", "Spicy Lamb", "Chicken Teriyaki"],
-        color: "from-yellow-400 to-amber-600",
-    },
-    {
-        id: "grills",
-        name: "Flame Grills",
-        icon: UtensilsCrossed,
-        items: ["Mixed Platter", "Lamb Chops", "Grilled Salmon"],
-        color: "from-red-400 to-rose-600",
-    },
-    {
-        id: "sides",
-        name: "Sides & Starters",
-        icon: Pizza, // Using Pizza as generic 'side' icon alternative
-        items: ["Hummus & Pita", "Falafel", "Spicy Fries"],
-        color: "from-green-400 to-emerald-600",
-    },
-    {
-        id: "drinks",
-        name: "Drinks & Desserts",
-        icon: Coffee,
-        items: ["Mango Lassi", "Baklava", "Mint Lemonade"],
-        color: "from-blue-400 to-indigo-600",
-    },
-];
+const iconMap: Record<string, any> = {
+    beef: Beef,
+    chicken: Drumstick,
+    fish: Fish,
+    bowls: Soup,
+    grills: UtensilsCrossed,
+    sides: Pizza,
+    drinks: Coffee,
+    defaults: UtensilsCrossed
+};
+
+interface PreviewCategory {
+    id: string;
+    name: string;
+    description: string;
+    icon: any;
+    color: string;
+    displayItems: string[];
+}
+
+const colorMap: Record<string, string> = {
+    bowls: "from-yellow-400 to-amber-600",
+    grills: "from-red-400 to-rose-600",
+    sides: "from-green-400 to-emerald-600",
+    drinks: "from-blue-400 to-indigo-600",
+    defaults: "from-gray-400 to-gray-600"
+};
 
 export default function MenuPreview() {
+    const [categories, setCategories] = React.useState<PreviewCategory[]>([]);
+    const [isLoading, setIsLoading] = React.useState(true);
+
+    React.useEffect(() => {
+        const fetchMenuPreview = async () => {
+            try {
+                const [catRes, itemRes] = await Promise.all([
+                    fetch("/api/menu/categories"),
+                    fetch("/api/menu/items")
+                ]);
+                const cats = await catRes.json();
+                const items = await itemRes.json();
+
+                const previewData: PreviewCategory[] = Array.isArray(cats) ? (cats as any[]).slice(0, 4).map((cat: any) => ({
+                    ...cat,
+                    icon: iconMap[cat.id] || iconMap.defaults,
+                    color: colorMap[cat.id] || colorMap.defaults,
+                    displayItems: Array.isArray(items)
+                        ? (items as any[]).filter((i: any) => i.category_id === cat.id).slice(0, 3).map((i: any) => i.name)
+                        : []
+                })) : [];
+
+                setCategories(previewData);
+            } catch (error) {
+                console.error("Error fetching menu preview:", error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchMenuPreview();
+    }, []);
+
+    if (isLoading) return null;
+    if (categories.length === 0) return null;
     return (
         <section className="py-20 bg-background relative transition-colors duration-300">
             <div className="container mx-auto px-6">
@@ -65,10 +97,9 @@ export default function MenuPreview() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            whileHover={{ y: -10 }}
-                            className="bg-card border border-gray-200 dark:border-white/5 rounded-3xl p-8 hover:border-primary/30 transition-all duration-300 group cursor-pointer shadow-md dark:shadow-none"
+                            className="bg-card border border-gray-200 dark:border-white/5 rounded-3xl p-8 hover:border-primary/30 transition-all duration-300 group cursor-pointer shadow-md dark:shadow-none flex flex-col h-full"
                         >
-                            <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${category.color} flex items-center justify-center mb-6 shadow-lg`}>
+                            <div className={`w-14 h-14 rounded-2xl bg-linear-to-br ${category.color} flex items-center justify-center mb-6 shadow-lg`}>
                                 <category.icon size={28} className="text-white" />
                             </div>
 
@@ -76,22 +107,25 @@ export default function MenuPreview() {
                                 {category.name}
                             </h3>
 
-                            <ul className="space-y-3 mb-8">
-                                {category.items.map((item) => (
-                                    <li key={item} className="text-gray-600 dark:text-gray-400 text-sm flex items-center gap-2">
-                                        <span className="w-1.5 h-1.5 rounded-full bg-gray-400 dark:bg-white/20" />
-                                        {item}
+                            <ul className="space-y-3 mb-8 grow">
+                                {category.displayItems.map((item: any) => (
+                                    <li key={item} className="text-gray-600 dark:text-gray-400 text-sm flex items-start gap-3">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-gray-400 dark:bg-white/20 mt-1.5 shrink-0" />
+                                        <span className="line-clamp-2">{item}</span>
                                     </li>
                                 ))}
                             </ul>
 
-                            <div className="flex items-center text-primary font-medium text-sm">
-                                Explore Category <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                            </div>
+                            <Link
+                                href={`/menu#${category.id}`}
+                                className="flex items-center justify-center gap-2 text-primary font-bold text-sm mt-auto py-3 px-6 rounded-xl border border-primary/20 hover:bg-primary hover:text-black transition-all group/btn"
+                            >
+                                Explore Category <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
+                            </Link>
                         </motion.div>
                     ))}
                 </div>
             </div>
-        </section>
+        </section >
     );
 }
