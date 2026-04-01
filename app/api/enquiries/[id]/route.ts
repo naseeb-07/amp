@@ -7,21 +7,15 @@ export async function PATCH(
 ) {
     try {
         const { id } = await params;
-        const body = await request.json();
-        const { status } = body;
+        const { status } = await request.json();
 
         if (!status) {
             return NextResponse.json({ error: 'Status is required' }, { status: 400 });
         }
 
-        await pool.query(
-            'UPDATE enquiries SET status = ? WHERE id = ?',
-            [status, id]
-        );
-
+        await pool.query('UPDATE enquiries SET status = $1 WHERE id = $2', [status, id]);
         return NextResponse.json({ message: 'Enquiry updated successfully' });
     } catch (error) {
-        console.error('Error updating enquiry:', error);
         return NextResponse.json({ error: 'Failed to update enquiry' }, { status: 500 });
     }
 }
@@ -32,10 +26,9 @@ export async function DELETE(
 ) {
     try {
         const { id } = await params;
-        await pool.query('DELETE FROM enquiries WHERE id = ?', [id]);
+        await pool.query('DELETE FROM enquiries WHERE id = $1', [id]);
         return NextResponse.json({ message: 'Enquiry deleted successfully' });
     } catch (error) {
-        console.error('Error deleting enquiry:', error);
         return NextResponse.json({ error: 'Failed to delete enquiry' }, { status: 500 });
     }
 }

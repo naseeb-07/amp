@@ -8,15 +8,12 @@ export async function PUT(
     try {
         const { id } = await params;
         const { title, snippet, content, date, readTime, image } = await req.json();
-        console.log("Updating post:", id, { title, snippet });
-        const [result] = await pool.query(
-            "UPDATE blog_posts SET title = ?, snippet = ?, content = ?, date = ?, readTime = ?, image = ? WHERE id = ?",
+        await pool.query(
+            'UPDATE blog_posts SET title = $1, snippet = $2, content = $3, date = $4, "readTime" = $5, image = $6 WHERE id = $7',
             [title, snippet, content, date, readTime, image, id]
         );
-        console.log("Update result:", result);
         return NextResponse.json({ message: "Post updated" });
     } catch (error: any) {
-        console.error("Error updating post:", error);
         return NextResponse.json({ error: error.message || "Failed to update post" }, { status: 500 });
     }
 }
@@ -27,12 +24,9 @@ export async function DELETE(
 ) {
     try {
         const { id } = await params;
-        console.log("Deleting post:", id);
-        const [result] = await pool.query("DELETE FROM blog_posts WHERE id = ?", [id]);
-        console.log("Delete result:", result);
+        await pool.query("DELETE FROM blog_posts WHERE id = $1", [id]);
         return NextResponse.json({ message: "Post deleted" });
     } catch (error: any) {
-        console.error("Error deleting post:", error);
         return NextResponse.json({ error: error.message || "Failed to delete post" }, { status: 500 });
     }
 }

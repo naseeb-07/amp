@@ -1,20 +1,15 @@
-import mysql from 'mysql2/promise';
+import { Pool } from 'pg';
 
-const isProduction = process.env.NODE_ENV === 'production';
-
-const pool = mysql.createPool({
+const pool = new Pool({
     host: process.env.DB_HOST || '127.0.0.1',
     user: process.env.DB_USER || 'root',
     password: process.env.DB_PASSWORD || '',
-    database: process.env.DB_NAME || 'naseeb_db',
-    port: Number(process.env.DB_PORT) || 3307,
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0,
-    // SSL is required for cloud databases (Aiven). Disabled for local XAMPP.
-    ...(isProduction && {
-        ssl: { rejectUnauthorized: false }
-    }),
+    database: process.env.DB_NAME || 'defaultdb',
+    port: Number(process.env.DB_PORT) || 5432,
+    ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : undefined,
+    max: 10,
+    idleTimeoutMillis: 30000,
+    connectionTimeoutMillis: 5000,
 });
 
 export default pool;

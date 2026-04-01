@@ -8,15 +8,12 @@ export async function PUT(
     try {
         const { id } = await params;
         const { name, description } = await req.json();
-        console.log("Updating category:", id, { name, description });
-        const [result] = await pool.query(
-            "UPDATE menu_categories SET name = ?, description = ? WHERE id = ?",
+        await pool.query(
+            "UPDATE menu_categories SET name = $1, description = $2 WHERE id = $3",
             [name, description, id]
         );
-        console.log("Update result:", result);
         return NextResponse.json({ message: "Category updated" });
     } catch (error: any) {
-        console.error("Error updating category:", error);
         return NextResponse.json({ error: error.message || "Failed to update category" }, { status: 500 });
     }
 }
@@ -27,12 +24,10 @@ export async function DELETE(
 ) {
     try {
         const { id } = await params;
-        console.log("Deleting category:", id);
-        const [result] = await pool.query("DELETE FROM menu_categories WHERE id = ?", [id]);
-        console.log("Delete result:", result);
+        await pool.query("DELETE FROM menu_items WHERE category_id = $1", [id]);
+        await pool.query("DELETE FROM menu_categories WHERE id = $1", [id]);
         return NextResponse.json({ message: "Category deleted" });
     } catch (error: any) {
-        console.error("Error deleting category:", error);
         return NextResponse.json({ error: error.message || "Failed to delete category" }, { status: 500 });
     }
 }

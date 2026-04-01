@@ -8,15 +8,12 @@ export async function PUT(
     try {
         const { id } = await params;
         const { name, description, currency, price, image, limited } = await req.json();
-        console.log("Updating special:", id, { name });
-        const [result] = await pool.query(
-            "UPDATE chefs_collection SET name = ?, description = ?, currency = ?, price = ?, image = ?, limited = ? WHERE id = ?",
-            [name, description, currency || 'USD', price, image, limited ? 1 : 0, id]
+        await pool.query(
+            "UPDATE chefs_collection SET name = $1, description = $2, currency = $3, price = $4, image = $5, limited = $6 WHERE id = $7",
+            [name, description, currency || 'INR', price, image, limited ? true : false, id]
         );
-        console.log("Update result:", result);
         return NextResponse.json({ message: "Special updated" });
     } catch (error: any) {
-        console.error("Error updating special:", error);
         return NextResponse.json({ error: error.message || "Failed to update special" }, { status: 500 });
     }
 }
@@ -27,12 +24,9 @@ export async function DELETE(
 ) {
     try {
         const { id } = await params;
-        console.log("Deleting special:", id);
-        const [result] = await pool.query("DELETE FROM chefs_collection WHERE id = ?", [id]);
-        console.log("Delete result:", result);
+        await pool.query("DELETE FROM chefs_collection WHERE id = $1", [id]);
         return NextResponse.json({ message: "Special deleted" });
     } catch (error: any) {
-        console.error("Error deleting special:", error);
         return NextResponse.json({ error: error.message || "Failed to delete special" }, { status: 500 });
     }
 }

@@ -3,10 +3,9 @@ import pool from '@/lib/db';
 
 export async function GET() {
     try {
-        const [rows] = await pool.query('SELECT * FROM enquiries ORDER BY created_at DESC');
+        const { rows } = await pool.query('SELECT * FROM enquiries ORDER BY created_at DESC');
         return NextResponse.json(rows);
     } catch (error) {
-        console.error('Error fetching enquiries:', error);
         return NextResponse.json({ error: 'Failed to fetch enquiries' }, { status: 500 });
     }
 }
@@ -20,14 +19,13 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: 'Full name, email, and message are required' }, { status: 400 });
         }
 
-        const [result] = await pool.query(
-            'INSERT INTO enquiries (full_name, email, phone, subject, message) VALUES (?, ?, ?, ?, ?)',
+        const { rows } = await pool.query(
+            'INSERT INTO enquiries (full_name, email, phone, subject, message) VALUES ($1, $2, $3, $4, $5) RETURNING id',
             [full_name, email, phone, subject, message]
         );
 
-        return NextResponse.json({ message: 'Enquiry submitted successfully', id: (result as any).insertId }, { status: 201 });
+        return NextResponse.json({ message: 'Enquiry submitted successfully', id: rows[0].id }, { status: 201 });
     } catch (error) {
-        console.error('Error creating enquiry:', error);
         return NextResponse.json({ error: 'Failed to submit enquiry' }, { status: 500 });
     }
 }
