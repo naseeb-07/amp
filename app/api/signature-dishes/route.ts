@@ -17,7 +17,7 @@ export async function POST(request: Request) {
         const { name, currency, price, rating, image, isBestSeller } = await request.json();
         await pool.query(
             'INSERT INTO signature_dishes (name, currency, price, rating, image, isBestSeller) VALUES (?, ?, ?, ?, ?, ?)',
-            [name, currency || 'USD', price, rating, image, isBestSeller ? 1 : 0]
+            [name, currency || 'INR', price, rating, image, isBestSeller ? 1 : 0]
         );
         return NextResponse.json({ message: 'Signature dish created successfully' });
     } catch (error: any) {

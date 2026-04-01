@@ -17,7 +17,7 @@ export async function POST(request: Request) {
         const { id, category_id, name, description, currency, price, image, popular } = await request.json();
         await pool.query(
             'INSERT INTO menu_items (id, category_id, name, description, currency, price, image, popular) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-            [id, category_id, name, description, currency || 'USD', price, image, popular ? 1 : 0]
+            [id, category_id, name, description, currency || 'INR', price, image, popular ? 1 : 0]
         );
         return NextResponse.json({ message: 'Menu item created successfully' });
     } catch (error: any) {

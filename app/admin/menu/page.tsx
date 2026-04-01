@@ -46,7 +46,7 @@ export default function MenuManagementAdmin() {
         category_id: "",
         name: "",
         description: "",
-        currency: "USD",
+        currency: "INR",
         price: "",
         image: "/chicken-over-rice.jpg",
         popular: false
@@ -227,7 +227,7 @@ export default function MenuManagementAdmin() {
                                 category_id: categories[0]?.id || "",
                                 name: "",
                                 description: "",
-                                currency: "USD",
+                                currency: "INR",
                                 price: "",
                                 image: "/chicken-over-rice.jpg",
                                 popular: false
