@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { Calendar, Clock, User, Mail, Phone, MessageSquare, ChevronDown, Plus, Minus } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 
-export default function ReservationPage() {
+function ReservationContent() {
     const searchParams = useSearchParams();
     const eventParam = searchParams.get("event");
 
@@ -91,9 +91,7 @@ export default function ReservationPage() {
     ];
 
     return (
-        <main className="min-h-screen bg-black text-[#FFFFFF] font-poppins pt-28 pb-20">
-            <Navbar />
-
+        <>
             {/* Background Elements */}
             <div className="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
                 <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[100px]" />
@@ -273,8 +271,23 @@ export default function ReservationPage() {
                     </form>
                 </motion.div>
             </div>
+        </>
+    );
+}
 
+export default function ReservationPage() {
+    return (
+        <main className="min-h-screen bg-black text-[#FFFFFF] font-poppins pt-28 pb-20">
+            <Navbar />
+            <Suspense fallback={
+                <div className="container mx-auto px-6 text-center py-20 text-white min-h-[60vh] flex items-center justify-center">
+                    <div className="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
+                </div>
+            }>
+                <ReservationContent />
+            </Suspense>
             <Footer />
         </main>
     );
 }
+

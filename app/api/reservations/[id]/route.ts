@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
 
 // Avoid crashing if transporter isn't configured by mocking sendMail in dev if needed
 // However, the prompt asked to integrate it. We'll attempt the send.
-export async function PATCH(request: Request, context: { params: { id: string } }) {
+export async function PATCH(request: Request, context: { params: Promise<{ id: string }> }) {
     try {
         // First await params in Next.js 15
         const params = await context.params;
