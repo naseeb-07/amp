@@ -109,7 +109,7 @@ export default function Footer() {
                         <div>
                             <Link href="/#home" className="block w-40 h-16 relative mb-6">
                                 <img
-                                    src="/logo1.jpeg"
+                                    src="/logo1.png"
                                     alt="Village Restaurant"
                                     className="w-full h-full object-contain object-left"
                                 />
@@ -209,15 +209,16 @@ export default function Footer() {
                         <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
                             <div className="relative group">
                                 <input
+                                    suppressHydrationWarning
                                     type="email"
                                     placeholder="Your email address"
                                     className="w-full bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary transition-all pr-12"
                                 />
-                                <button className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-primary hover:scale-110 transition-transform">
+                                <button suppressHydrationWarning className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-primary hover:scale-110 transition-transform">
                                     <Send size={16} />
                                 </button>
                             </div>
-                            <button className="w-full bg-primary hover:bg-yellow-500 text-black font-bold py-3 px-6 rounded-xl text-sm transition-all active:scale-[0.98]">
+                            <button suppressHydrationWarning className="w-full bg-primary hover:bg-yellow-500 text-black font-bold py-3 px-6 rounded-xl text-sm transition-all active:scale-[0.98]">
                                 Subscribe Now
                             </button>
                         </form>

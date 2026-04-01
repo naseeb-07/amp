@@ -44,7 +44,7 @@ export default function Hero() {
                     </p>
 
                     <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-                        <button className="bg-primary hover:bg-yellow-500 text-black px-8 py-4 rounded-full font-bold text-lg transition-transform hover:scale-105 flex items-center gap-2 w-full md:w-auto justify-center shadow-[0_0_20px_rgba(250,204,21,0.3)]">
+                        <button suppressHydrationWarning className="bg-primary hover:bg-yellow-500 text-black px-8 py-4 rounded-full font-bold text-lg transition-transform hover:scale-105 flex items-center gap-2 w-full md:w-auto justify-center shadow-[0_0_20px_rgba(250,204,21,0.3)]">
                             <ShoppingBag size={20} />
                             Order Online
                         </button>

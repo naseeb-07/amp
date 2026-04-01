@@ -81,6 +81,7 @@ export default function FeedbackForm() {
                                 <div className="space-y-2">
                                     <label className="text-sm font-bold text-gray-700 dark:text-gray-300">Your Name *</label>
                                     <input
+                                        suppressHydrationWarning
                                         type="text"
                                         value={formData.name}
                                         onChange={e => setFormData({ ...formData, name: e.target.value })}
@@ -91,6 +92,7 @@ export default function FeedbackForm() {
                                 <div className="space-y-2">
                                     <label className="text-sm font-bold text-gray-700 dark:text-gray-300">Role / Title</label>
                                     <input
+                                        suppressHydrationWarning
                                         type="text"
                                         value={formData.role}
                                         onChange={e => setFormData({ ...formData, role: e.target.value })}
@@ -103,6 +105,7 @@ export default function FeedbackForm() {
                                     <div className="flex gap-2 pt-2">
                                         {[1, 2, 3, 4, 5].map((star) => (
                                             <button
+                                                suppressHydrationWarning
                                                 key={star}
                                                 type="button"
                                                 onClick={() => setFormData({ ...formData, rating: star })}
@@ -121,6 +124,7 @@ export default function FeedbackForm() {
                             <div className="space-y-2 flex flex-col">
                                 <label className="text-sm font-bold text-gray-700 dark:text-gray-300">Your Review *</label>
                                 <textarea
+                                    suppressHydrationWarning
                                     value={formData.quote}
                                     onChange={e => setFormData({ ...formData, quote: e.target.value })}
                                     rows={3}
@@ -134,6 +138,7 @@ export default function FeedbackForm() {
                             )}
 
                             <button
+                                suppressHydrationWarning
                                 type="submit"
                                 disabled={isSubmitting}
                                 className="w-full bg-primary text-black font-bold py-4 rounded-xl hover:bg-yellow-500 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
