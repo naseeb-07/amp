@@ -30,8 +30,8 @@ export default function AdminLogin() {
     };
 
     return (
-        <div className="min-h-screen bg-dark flex items-center justify-center p-6 font-poppins">
-            <div className="bg-[#111827] border border-white/5 p-10 rounded-[2.5rem] w-full max-w-md shadow-2xl relative overflow-hidden">
+        <div className="min-h-screen bg-dark flex items-center justify-center p-4 font-poppins">
+            <div className="bg-[#111827] border border-white/5 p-8 sm:p-10 rounded-[2.5rem] w-full max-w-md shadow-2xl relative overflow-hidden">
                 {/* Background Glow */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                 <div className="absolute bottom-0 left-0 w-32 h-32 bg-primary/5 blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
@@ -84,7 +84,7 @@ export default function AdminLogin() {
                 </form>
 
                 <p className="text-center text-xs text-gray-600 mt-8">
-                    &copy; 2026 Asif's Melting Pot Management System
+                    &copy; 2026 Village Restaurant Management System
                 </p>
             </div>
         </div>

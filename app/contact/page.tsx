@@ -16,9 +16,9 @@ const COUNTRY_CODES = [
 
 export default function Contact() {
     const [settings, setSettings] = useState<any>({
-        address: "1184 Lawrenceville Hwy, Suite C, Lawrenceville",
-        phone: "(470) 292-3576",
-        email: "hello@asifsmeltingpot.com"
+        address: "Ground Floor, Villa-18, CONCORDE CUPERTINO, 84/4, Neeladri Rd, Electronic City Phase I, Bengaluru 560100",
+        phone: "+91 97311 55758",
+        email: "contact@villagerestaurant.com"
     });
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);

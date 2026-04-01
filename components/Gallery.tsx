@@ -22,7 +22,7 @@ export default function Gallery() {
                 <div className="flex justify-between items-end mb-12">
                     <div>
                         <h2 className="text-4xl md:text-5xl font-bold mb-2 text-gray-900 dark:text-white">Follow the <span className="text-primary">Vibe</span></h2>
-                        <p className="text-gray-600 dark:text-gray-400">@AsifsMeltingPoint</p>
+                        <p className="text-gray-600 dark:text-gray-400">@VillageRestaurantECity</p>
                     </div>
 
                     <a

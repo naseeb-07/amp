@@ -21,8 +21,8 @@ import { CartProvider } from "@/components/CartContext";
 // ... existing imports
 
 export const metadata: Metadata = {
-  title: "Asif's Melting Pot | Premium Dark Edition",
-  description: "Experience premium Halal comfort food with a luxurious dining feel.",
+  title: "Village Restaurant | Authentic Arabian & Indian Cuisine",
+  description: "Experience delicious Arabian and tandoori dishes, with a wide variety of non-vegetarian options.",
 };
 
 export default function RootLayout({

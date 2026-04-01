@@ -9,7 +9,7 @@ const transporter = nodemailer.createTransport({
     // In production, these should be environment variables.
     service: 'gmail',
     auth: {
-        user: process.env.SMTP_USER || 'hello@asifsmeltingpot.com', // Replace with real email
+        user: process.env.SMTP_USER || 'contact@villagerestaurant.com', // Replace with real email
         pass: process.env.SMTP_PASS || 'password123'              // Replace with real app password
     }
 });
@@ -43,9 +43,9 @@ export async function PATCH(request: Request, context: { params: Promise<{ id: s
         // Send Email using Nodemailer
         try {
             const mailOptions = {
-                from: process.env.SMTP_USER || 'reservations@asifsmeltingpot.com',
+                from: process.env.SMTP_USER || 'reservations@villagerestaurant.com',
                 to: reservation.email,
-                subject: `Reservation ${status === 'approved' ? 'Confirmed' : 'Declined'} - Asif's Melting Pot`,
+                subject: `Reservation ${status === 'approved' ? 'Confirmed' : 'Declined'} - Village Restaurant`,
                 html: `
                     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333 text-align: center;">
                         <h2 style="color: ${status === 'approved' ? '#4CAF50' : '#f44336'};">Reservation ${status === 'approved' ? 'Approved' : 'Declined'}</h2>
@@ -54,7 +54,7 @@ export async function PATCH(request: Request, context: { params: Promise<{ id: s
                         ${status === 'approved' ? `<p>We are looking forward to serving you!</p>` : `<p>Unfortunately, we cannot accommodate your request at this time. Please contact us for alternative arrangements.</p>`}
                         <br/>
                         <p>Best regards,</p>
-                        <p><strong>Asif's Melting Pot Team</strong></p>
+                        <p><strong>Village Restaurant Team</strong></p>
                     </div>
                 `
             };

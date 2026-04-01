@@ -9,9 +9,9 @@ export default function Footer() {
     const { resolvedTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
     const [settings, setSettings] = useState<any>({
-        address: "1184 Lawrenceville Hwy, Suite C, Lawrenceville",
-        phone: "(470) 292-3576",
-        email: "hello@asifsmeltingpot.com"
+        address: "Ground Floor, Villa-18, CONCORDE CUPERTINO, 84/4, Neeladri Rd, Electronic City Phase I, Bengaluru 560100",
+        phone: "+91 97311 55758",
+        email: "contact@villagerestaurant.com"
     });
     const [hours, setHours] = useState<any[]>([]);
 
@@ -39,9 +39,7 @@ export default function Footer() {
     }, []);
 
     const defaultHours = [
-        { day_range: "Mon - Thu", time_range: "11:00 AM - 10:00 PM" },
-        { day_range: "Fri - Sat", time_range: "11:00 AM - 11:00 PM" },
-        { day_range: "Sunday", time_range: "12:00 PM - 09:00 PM" }
+        { day_range: "Mon - Sun", time_range: "10:30 AM - 11:45 PM" }
     ];
 
     const filteredHours = (hours.length > 0 ? hours : defaultHours)
@@ -109,11 +107,15 @@ export default function Footer() {
                     {/* 1. Brand & Halal logo */}
                     <div className="space-y-8">
                         <div>
-                            <Link href="/#home" className="text-2xl font-black text-gray-900 dark:text-white mb-4 block tracking-tighter">
-                                ASIF&apos;S <span className="text-primary italic">MELTING POT</span>
+                            <Link href="/#home" className="block w-40 h-16 relative mb-6">
+                                <img
+                                    src="/logo1.jpeg"
+                                    alt="Village Restaurant"
+                                    className="w-full h-full object-contain object-left"
+                                />
                             </Link>
                             <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-sm">
-                                Premium Halal comfort food bringing the authentic taste of Indo-Med cuisine to your table. Open late for your cravings.
+                                Village Restaurant serves delicious Arabian and tandoori dishes, offering a wide variety of non-vegetarian options for a great dining experience.
                             </p>
                         </div>
 
@@ -224,7 +226,7 @@ export default function Footer() {
 
                 <div className="pt-12 border-t border-gray-100 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
                     <p className="text-gray-500 dark:text-gray-500 text-xs font-medium">
-                        © {new Date().getFullYear()} Asif&apos;s Melting Pot. All rights reserved.
+                        © {new Date().getFullYear()} Village Restaurant. All rights reserved.
                     </p>
                     <div className="flex items-center gap-8">
                         <Link href="/privacy" className="text-xs text-gray-400 hover:text-primary transition-colors">Privacy Policy</Link>

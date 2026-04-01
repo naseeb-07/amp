@@ -67,10 +67,10 @@ export default function Navbar() {
     return (
         <header className={headerClasses}>
             <div className="container mx-auto px-6 flex items-center justify-between">
-                <Link href="/" className="relative h-20 w-32 md:h-24 md:w-40 -my-4">
+                <Link href="/" className="relative h-20 w-20 md:h-24 md:w-24 -my-4">
                     <Image
-                        src="/logo-amp.svg"
-                        alt="Asif's Melting Pot"
+                        src="/logo1.jpeg"
+                        alt="Village Restaurant"
                         fill
                         className={`object-contain transition-all duration-300 ${isLightMode ? "" : "brightness-110"}`}
                         priority
