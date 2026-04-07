@@ -7,27 +7,67 @@ import { Star, Quote } from "lucide-react";
 const staticTestimonials = [
     {
         id: 1,
-        name: "Sarah Jenkins",
-        role: "Food Blogger",
-        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1887&auto=format&fit=crop",
-        quote: "The truffle wagyu bowl is an absolute masterpiece. The flavors are balanced perfectly, and the ambiance is stunning.",
+        name: "Rahul Sharma",
+        role: "Google Review",
+        image: "",
+        quote: "Amazing food and great ambiance! The Tandoori Chicken here is absolutely phenomenal — perfectly marinated and cooked to perfection. Will definitely visit again with family.",
         rating: 5,
     },
     {
         id: 2,
-        name: "Michael Chen",
-        role: "Regular Customer",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1887&auto=format&fit=crop",
-        quote: "Finally a place that serves premium Halal food late at night without compromising on quality. 10/10 recommended!",
+        name: "Priya Nair",
+        role: "Google Review",
+        image: "",
+        quote: "One of the best restaurants near Electronic City. The Biryani was fragrant and delicious, and the staff was super friendly. Highly recommend for a weekend dinner outing!",
         rating: 5,
     },
     {
         id: 3,
-        name: "Amara Khan",
-        role: "Event Planner",
-        image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop",
-        quote: "Booked them for a corporate catering event. The presentation was impeccable and the guests loved every bite.",
-        rating: 4.8,
+        name: "Mohammed Irfan",
+        role: "Google Review",
+        image: "",
+        quote: "Great place for authentic North Indian and Arabian cuisine. The Dal Makhani combo is a must-try. Food was fresh, portions were generous, and service was prompt.",
+        rating: 4,
+    },
+    {
+        id: 4,
+        name: "Sneha R.",
+        role: "Google Review",
+        image: "",
+        quote: "Visited with colleagues from Wipro and everyone loved it. The atmosphere is warm and the menu variety is impressive — from Mughlai to Chinese, everything was spot on.",
+        rating: 5,
+    },
+    {
+        id: 5,
+        name: "Arun Kumar",
+        role: "Google Review",
+        image: "",
+        quote: "Solid restaurant for the price. The Butter Chicken and naan were absolutely divine. A bit crowded on weekends but totally worth the wait. Great value for money!",
+        rating: 4,
+    },
+    {
+        id: 6,
+        name: "Fatima Begum",
+        role: "Google Review",
+        image: "",
+        quote: "Ordered via delivery — fresh food, packed well, and arrived hot. The Chicken Shawarma and Tandoori platter were highlights. Definitely ordering again!",
+        rating: 5,
+    },
+    {
+        id: 7,
+        name: "Deepak Menon",
+        role: "Google Review",
+        image: "",
+        quote: "Excellent service and a cozy dine-in experience. The Paneer Tikka and Rumali Roti combo was outstanding. Perfect spot for a business lunch near EC Phase 1.",
+        rating: 4,
+    },
+    {
+        id: 8,
+        name: "Sana Hussain",
+        role: "Google Review",
+        image: "",
+        quote: "Love this place! The food quality is consistent every time I visit. The Arabian Rice and Grilled items are amazing. Affordable prices and generous portions make it a favourite!",
+        rating: 5,
     },
 ];
 
@@ -65,7 +105,7 @@ export default function Testimonials() {
                         <Star className="text-yellow-400 fill-yellow-400" size={24} />
                         <Star className="text-yellow-400 fill-yellow-400" size={24} />
                         <Star className="text-yellow-400 fill-yellow-400" size={24} />
-                        <span className="text-gray-900 dark:text-white font-bold text-lg ml-2">4.9/5 Google Reviews</span>
+                        <span className="text-gray-900 dark:text-white font-bold text-lg ml-2">3.9/5 Google Reviews</span>
                     </div>
                     <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
                         Loved by <span className="text-primary">Thousands</span>

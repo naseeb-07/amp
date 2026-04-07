@@ -6,7 +6,6 @@ import { Timer, ArrowRight, ChefHat, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { getCurrencySymbol } from "@/lib/currency";
-import { useCart } from "@/components/CartContext";
 
 interface ChefSpecial {
     id: string;
@@ -21,7 +20,6 @@ interface ChefSpecial {
 export default function ChefsCollection() {
     const [items, setItems] = React.useState<ChefSpecial[]>([]);
     const [isLoading, setIsLoading] = React.useState(true);
-    const { addToCart } = useCart();
 
     React.useEffect(() => {
         const fetchItems = async () => {
@@ -91,21 +89,12 @@ export default function ChefsCollection() {
                                 <h3 className="text-2xl font-bold mb-2 text-white">{item.name}</h3>
                                 <p className="text-gray-200 dark:text-gray-300 text-sm mb-6 max-w-md">{item.description}</p>
 
-                                <button
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        addToCart({
-                                            id: item.id,
-                                            name: item.name,
-                                            price: item.price,
-                                            image: item.image,
-                                            currency: item.currency,
-                                        });
-                                    }}
+                                <Link
+                                    href="/order"
                                     className="flex items-center gap-2 text-white font-medium hover:text-primary transition-colors group-hover:translate-x-2 duration-300"
                                 >
                                     Order This Special <ArrowRight size={18} />
-                                </button>
+                                </Link>
                             </div>
                         </motion.div>
                     ))}

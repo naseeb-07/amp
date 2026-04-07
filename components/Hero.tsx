@@ -12,11 +12,13 @@ export default function Hero() {
                 {/* Minimal bottom fade for readability */}
                 <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent z-10" />
                 <div className="absolute inset-0 bg-neutral-900 flex items-center justify-center text-neutral-700 overflow-hidden">
-                    <iframe
-                        className="absolute top-1/2 left-1/2 w-[120vw] h-[120vh] min-w-[120vw] min-h-[120vh] -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity=10  object-cover scale-110"
-                        src="https://www.youtube.com/embed/WW0SLuX8HsI?autoplay=1&mute=1&controls=0&loop=1&playlist=WW0SLuX8HsI&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1"
-                        allow="autoplay; encrypted-media"
-                        tabIndex={-1}
+                    <video
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="absolute top-1/2 left-1/2 w-full h-full -translate-x-1/2 -translate-y-1/2 pointer-events-none object-cover opacity-100"
+                        src="/AQMXKz30JQ4PHIRnYqVPMkGKrn1Iudtkh5ftcVdQjz_HhPKFkVAWuNWUcaXLHI46tjXbGzvFy4dDScrTh8FoZms3XGGxt3ES-pX-JM8.mp4"
                     />
                 </div>
             </div>
@@ -44,10 +46,10 @@ export default function Hero() {
                     </p>
 
                     <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-                        <button suppressHydrationWarning className="bg-primary hover:bg-yellow-500 text-black px-8 py-4 rounded-full font-bold text-lg transition-transform hover:scale-105 flex items-center gap-2 w-full md:w-auto justify-center shadow-[0_0_20px_rgba(250,204,21,0.3)]">
+                        <Link href="/order" className="bg-primary hover:bg-yellow-500 text-black px-8 py-4 rounded-full font-bold text-lg transition-transform hover:scale-105 flex items-center gap-2 w-full md:w-auto justify-center shadow-[0_0_20px_rgba(250,204,21,0.3)]">
                             <ShoppingBag size={20} />
                             Order Online
-                        </button>
+                        </Link>
                         <Link href="/menu" className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-full font-bold text-lg transition-all hover:scale-105 flex items-center gap-2 w-full md:w-auto justify-center">
                             View Menu
                             <ArrowRight size={20} />

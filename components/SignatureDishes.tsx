@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import React from "react";
-import { Star, Plus, ArrowRight } from "lucide-react";
+import { Star, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { getCurrencySymbol } from "@/lib/currency";
@@ -78,9 +78,6 @@ export default function SignatureDishes() {
                                         Best Seller
                                     </div>
                                 )}
-                                <button className="absolute bottom-4 right-4 bg-white text-black p-3 rounded-full shadow-lg translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 hover:bg-primary">
-                                    <Plus size={20} />
-                                </button>
                             </div>
 
                             <div className="p-6">

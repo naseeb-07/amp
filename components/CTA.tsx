@@ -3,10 +3,8 @@
 import { motion } from "framer-motion";
 import { ArrowRight, ShoppingBag } from "lucide-react";
 import Link from "next/link";
-import { useCart } from "@/components/CartContext";
 
 export default function CTA() {
-    const { totalItems } = useCart();
     return (
         <section className="py-32 bg-gray-50 dark:bg-black relative overflow-hidden flex items-center justify-center transition-colors duration-300">
             {/* Background Gradient */}
@@ -28,11 +26,11 @@ export default function CTA() {
 
                 <div className="flex flex-col md:flex-row items-center justify-center gap-6">
                     <Link
-                        href={totalItems > 0 ? "/cart" : "/menu"}
+                        href="/order"
                         className="bg-primary hover:bg-yellow-500 text-black px-10 py-5 rounded-full font-bold text-xl transition-transform hover:scale-105 shadow-[0_0_30px_rgba(250,204,21,0.4)] flex items-center gap-2"
                     >
                         <ShoppingBag size={24} />
-                        {totalItems > 0 ? `View Cart (${totalItems})` : "Order Now"}
+                        Order Now
                     </Link>
                     <Link href="/contact" className="text-gray-900 dark:text-white border border-gray-300 dark:border-white/20 hover:border-primary dark:hover:border-white px-10 py-5 rounded-full font-bold text-xl transition-colors flex items-center gap-3">
                         Catering Inquiry <ArrowRight size={24} />

@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, ShoppingBag } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
-import { useCart } from "@/components/CartContext";
+
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -26,7 +26,7 @@ export default function Navbar() {
     }, []);
 
     const pathname = usePathname();
-    const { totalItems } = useCart();
+
 
     const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
         // If it's a hash link and we are currently on the homepage, scroll manually.
@@ -93,9 +93,8 @@ export default function Navbar() {
                     ))}
                     <div className="flex items-center gap-4">
                         <ThemeToggle />
-                        <Link href={totalItems > 0 ? "/cart" : "/menu"} className="bg-primary hover:bg-yellow-500 text-black px-6 py-2 rounded-full font-semibold transition-transform hover:scale-105 flex items-center gap-2">
-                            <ShoppingBag size={18} />
-                            {totalItems > 0 ? `View Cart (${totalItems})` : "Order Now"}
+                        <Link href="/order" className="bg-primary hover:bg-yellow-500 text-black px-6 py-2 rounded-full font-semibold transition-transform hover:scale-105 flex items-center gap-2">
+                            Order Online
                         </Link>
                     </div>
                 </nav>
@@ -138,14 +137,14 @@ export default function Navbar() {
                                     {link.name}
                                 </Link>
                             ))}
+
                             <hr className="border-border my-2" />
                             <Link
-                                href={totalItems > 0 ? "/cart" : "/menu"}
+                                href="/order"
                                 onClick={() => setIsOpen(false)}
-                                className="w-full bg-primary text-black py-3 rounded-xl font-bold flex items-center justify-center gap-2"
+                                className="w-full bg-primary text-black py-4 rounded-xl font-bold flex items-center justify-center gap-2 text-lg shadow-lg"
                             >
-                                <ShoppingBag size={20} />
-                                {totalItems > 0 ? `View Cart (${totalItems})` : "Order Online"}
+                                Order Online
                             </Link>
                         </nav>
                     </motion.div>

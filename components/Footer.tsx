@@ -159,18 +159,28 @@ export default function Footer() {
                     {/* 3. Contact Us */}
                     <div>
                         <h3 className="text-gray-900 dark:text-white font-bold mb-8 text-sm uppercase tracking-widest">Contact Us</h3>
-                        <ul className="space-y-6">
+                        <ul className="space-y-4">
                             <li className="flex items-start gap-4 group">
                                 <MapPin size={18} className="text-primary shrink-0 mt-0.5" />
-                                <span className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed group-hover:text-gray-900 dark:group-hover:text-white transition-colors">{settings.address}</span>
+                                <span className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
+                                    Ground Floor, Villa-18, Concorde Cupertino, Neeladri Main Road, Phase 1, Electronic City, Bangalore - 560100
+                                </span>
                             </li>
+                            
+                            {/* Primary Phones */}
                             <li className="flex items-center gap-4 group">
                                 <Phone size={18} className="text-primary shrink-0" />
-                                <span className="text-gray-600 dark:text-gray-400 text-sm group-hover:text-gray-900 dark:group-hover:text-white transition-colors">{settings.phone}</span>
+                                <div className="flex flex-col gap-1">
+                                    <a href="tel:+917090300311" className="text-gray-600 dark:text-gray-400 text-sm group-hover:text-gray-900 dark:group-hover:text-white transition-colors">+91 70903 00311</a>
+                                    <a href="tel:+918431850886" className="text-gray-600 dark:text-gray-400 text-sm group-hover:text-gray-900 dark:group-hover:text-white transition-colors">+91 84318 50886</a>
+                                </div>
                             </li>
+
                             <li className="flex items-center gap-4 group">
                                 <Mail size={18} className="text-primary shrink-0" />
-                                <span className="text-gray-600 dark:text-gray-400 text-sm break-all group-hover:text-gray-900 dark:group-hover:text-white transition-colors">{settings.email}</span>
+                                <a href="mailto:villagerestaurantecity@gmail.com" className="text-gray-600 dark:text-gray-400 text-sm group-hover:text-gray-900 dark:group-hover:text-white transition-colors whitespace-nowrap overflow-hidden text-ellipsis">
+                                    villagerestaurantecity@gmail.com
+                                </a>
                             </li>
                         </ul>
                     </div>
